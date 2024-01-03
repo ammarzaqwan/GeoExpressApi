@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <h1>Weather Forecast</h1>
+    <div>
+      <h2>Location Block</h2>
+      <p>Country: <%= country %></p>
+      <p>Latitude: <%= locationData.latitude %></p>
+      <p>Longitude: <%= locationData.longitude %></p>
+    </div>
+    <div>
+      <h2>Current Time Block</h2>
+      <% if (locationData.current && locationData.current.time) { %>
+      <p>Time: <%= locationData.current.time %></p>
+      <p>Temperature: <%= locationData.hourly.temperature_2m[0] %>&deg;C</p>
+      <p>Rain: <%= locationData.hourly.rain[0] %> mm</p>
+      <p>Wind Speed: <%= locationData.hourly.wind_speed_10m[0] %> km/h</p>
+      <p>Weather data not available</p>
+      <% } %>
+    </div>
+    <div>
+      <h2>Hourly Weather Block</h2>
+      <ul>
+        <% locationData.hourly.time.forEach((time, index) => { %>
+        <li>
+          <p>Time: <%= time %></p>
+          <p>
+            Temperature: <%= locationData.hourly.temperature_2m[index] %>&deg;C
+          </p>
+          <p>Rain: <%= locationData.hourly.rain[index] %> mm</p>
+          <p>
+            Wind Speed: <%= locationData.hourly.wind_speed_10m[index] %> km/h
+          </p>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>
